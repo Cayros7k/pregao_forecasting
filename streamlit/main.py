@@ -2,6 +2,7 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import numpy as np
+import tensorflow as tf
 
 from keras.models import load_model
 from sklearn.model_selection import train_test_split
@@ -22,8 +23,13 @@ selected_stock = st.selectbox("Selecione o Dataset para a previsão", stocks)
 def load_data(ticker):
     data = yf.download(ticker, START, TODAY)
     data.reset_index(inplace=True)
+
+    if isinstance(data.columns, pd.MultiIndex):
+        data.columns = data.columns.get_level_values(0)  # Mantém apenas o primeiro nível
+
     return data
 
+tf.compat.v1.reset_default_graph()
 model = load_model(f"../model/{selected_stock}_model.keras")
 
 data_load_state = st.text("Carregando dados...")
