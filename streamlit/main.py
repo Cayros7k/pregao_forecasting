@@ -3,7 +3,10 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import tensorflow as tf
+import openai
+import os
 
+from openai import OpenAI
 from keras.models import load_model
 from sklearn.model_selection import train_test_split
 from datetime import date
@@ -25,7 +28,7 @@ def load_data(ticker):
     data.reset_index(inplace=True)
 
     if isinstance(data.columns, pd.MultiIndex):
-        data.columns = data.columns.get_level_values(0)  # Mantém apenas o primeiro nível
+        data.columns = data.columns.get_level_values(0)
 
     return data
 
@@ -38,6 +41,31 @@ data_load_state.text("Dados carregados com sucesso!")
 
 st.subheader('DADO BRUTO')
 st.write(data.tail())
+
+api_key = st.secrets["OPENAI_API_KEY"]
+
+if not api_key:
+    raise ValueError("A chave de API não foi encontrada. Verifique seu arquivo de secrets.toml.")
+
+client = openai.OpenAI(api_key=api_key)
+
+def ask_gpt(prompt):
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7,
+        max_tokens=300
+    )
+    return response.choices[0].message['content']
+
+sample_data = data.to_string()
+prompt = f"Analise os últimos dados desta ação:\n{sample_data}\nO que você pode interpretar desse padrão de dados?"
+
+if st.button("Interpretar Dados com GPT"):
+    with st.spinner("Consultando o modelo..."):
+        interpretation = ask_gpt(prompt)
+    st.subheader("Interpretação GPT")
+    st.write(interpretation)
 
 def plot_raw_data():
     fig = go.Figure()
