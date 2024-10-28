@@ -15,7 +15,7 @@ from matplotlib import pyplot as plt
 START = "2018-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
-st.title("Aplicativo de Previsão de Cotação")
+st.title("EconoVision")
 
 stocks = ("POSI3.SA", "TOTS3.SA", "INTB3.SA", "DOTZ3.SA", "LWSA3.SA")
 
