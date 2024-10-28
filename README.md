@@ -4,7 +4,7 @@ Este é um aplicativo desenvolvido com Streamlit para prever cotações de açõ
 
 ## Funcionalidades
 
-- **Seleção de Ações**: O usuário pode escolher entre diferentes ações (e.g., POSI3.SA, TOTS3.SA).
+- **Seleção de Ações**: O usuário pode escolher entre diferentes ações ("POSI3.SA", "TOTS3.SA", "INTB3.SA", "DOTZ3.SA", "LWSA3.SA").
 - **Carregamento de Dados**: Os dados são carregados usando a biblioteca `yfinance`, com um intervalo definido de 2018 até a data atual.
 - **Cálculo do RSI**: O aplicativo calcula o Índice de Força Relativa (RSI) para avaliar condições de sobrecompra ou sobrevenda.
 - **Variação Percentual**: Exibe a variação percentual diária, semanal e mensal das ações.
