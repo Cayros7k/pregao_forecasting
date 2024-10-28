@@ -55,7 +55,7 @@ O modelo LSTM (Long Short-Term Memory) é utilizado para prever o preço do últ
 6. **Previsão e Visualização**:
    - O modelo é utilizado para prever os preços nos últimos 30, 60 e 90 dias a partir dos dados de treino. As previsões são comparadas com os valores reais e visualizadas em gráficos.
 
-### Resultados
+## Resultados
 Os resultados da previsão são apresentados em gráficos, comparando os valores reais com as previsões do modelo LSTM. Essas visualizações são essenciais para avaliar a performance do modelo e identificar áreas de melhoria.
 
 ### Métricas:
