@@ -146,7 +146,7 @@ def interpretar_dados(data):
 
     return analise_completa, resumo_simplificado
 
-st.subheader("Análise dos dados")
+st.subheader("ANÁLISE DOS DADOS")
 if st.button("Gerar Análise"):
     analise, resumo = interpretar_dados(data)
     st.subheader("Análise Completa:")
@@ -163,6 +163,7 @@ def plot_raw_data():
 
 plot_raw_data()
 
+st.subheader("Previsão")
 n_days = st.slider("Meses para prever:", 1, 3)
 period = n_days * 30
 
